@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  node:
+    image: nollim/hello_world_node
+    ports:
+      - 8080
+    volumes:
+      - ../../:/usr/src
