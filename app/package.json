@@ -1,0 +1,9 @@
+{
+    "name": "mon-app",
+    "version": "0.1.0",
+    "dependencies": {
+        "express": "~4",
+        "mysql": "2.18.1",
+        "dotenv": "8.2.0"
+    }
+}

@@ -1,28 +1,25 @@
 export PROJECT_ROOT ?= $(shell pwd)
-export CI_PROJECT_NAME ?= drupal-wework
-
-SUPPORTED_COMMANDS := docker-compose-dev-up drush cache-clear composer-require drupal-bin
-SUPPORTS_MAKE_ARGS := $(findstring $(firstword $(MAKECMDGOALS)), $(SUPPORTED_COMMANDS))
-ifneq "$(SUPPORTS_MAKE_ARGS)" ""
-  COMMAND_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
-  $(eval $(COMMAND_ARGS):;@:)
-endif
-
-docker-compose-dev-up:
-	docker-compose -f ${PROJECT_ROOT}/config/docker/docker-compose-dev.yml up -d --remove-orphans
-
-docker-compose-dev-down:
-	docker-compose -f ${PROJECT_ROOT}/config/docker/docker-compose-dev.yml down -v
+export CI_PROJECT_NAME ?= quotes
 
 docker-compose-up:
 	docker-compose -f ${PROJECT_ROOT}/config/docker/docker-compose.yml up -d --remove-orphans
 
 docker-compose-down:
-	docker-compose -f ${PROJECT_ROOT}/config/docker/docker-compose.yml down -v	
+	docker-compose -f ${PROJECT_ROOT}/config/docker/docker-compose.yml down -v
+
+docker-compose-restart:
+	docker-compose -f ${PROJECT_ROOT}/config/docker/docker-compose.yml restart node traefik
+
+node-start:
+	@docker-compose -f ${PROJECT_ROOT}/config/docker/docker-compose.yml run --rm node /start.sh
 
 node-bash:
-	@docker-compose -f ${PROJECT_ROOT}/config/docker/docker-compose-dev.yml run --rm node /bin/bash
+	@docker-compose -f ${PROJECT_ROOT}/config/docker/docker-compose.yml run --rm node /bin/bash
 
 deliver:
-	scp -r -p ./*  pi@192.168.0.37:/home/pi/hello-world
+	rsync -avh ./*  pi@192.168.0.37:/home/pi/quotes
+
+start-distant:
+	ssh  pi@192.168.0.37 /home/pi/quotes/scripts/start.sh
+	
 	
