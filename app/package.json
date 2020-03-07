@@ -4,6 +4,7 @@
     "dependencies": {
         "express": "~4",
         "mysql": "2.18.1",
-        "dotenv": "8.2.0"
+        "dotenv": "8.2.0",
+        "nodemon": "2.0.2"
     }
 }

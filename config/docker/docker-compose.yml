@@ -12,7 +12,7 @@ services:
     volumes:
       - ../../:/usr/src
     command: 
-      bash -c "node --inspect-brk=0.0.0.0 ."      
+      bash -c "nodemon --inspect-brk=0.0.0.0 ."      
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.node.rule=Host(`quotes.nollim`)"  
