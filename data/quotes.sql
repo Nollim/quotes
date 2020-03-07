@@ -1,5 +1,7 @@
 USE quotes;
 
+CREATE TABLE `quotes`.`quotes` ( `id` INT NOT NULL AUTO_INCREMENT , `quote` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
 INSERT INTO quotes (quote) VALUES ("Un mot venu du cœur tient chaud durant trois hivers.");
 INSERT INTO quotes (quote) VALUES ("L'ignorance peut être appelée la nuit de l'esprit, et cette nuit n'a ni lune ni étoiles.");
 INSERT INTO quotes (quote) VALUES ("Les grandes âmes ont de la volonté, les faibles âmes n'ont que souhaits.");

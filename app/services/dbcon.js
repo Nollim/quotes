@@ -1,14 +1,8 @@
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "password",
-    database: "quotes"
-});
-con.connect(function (err) {
-    if (err) throw err;
-    con.query("SELECT * FROM quotes", function (err, result, fields) {
-        if (err) throw err;
-        //res.status(200).json({ quote: "Une superbe citation" })
-        res.status(200).json(result)
-    });
-});
+const { env } = require(process.cwd() + '/config/config');
+//const mysql = require('mysql');
+module.exports = {
+    host: env.MYSQL_HOST,
+    user: env.MYSQL_USER,
+    password: env.MYSQL_PASSWORD,
+    database: env.MYSQL_DATABASE
+};

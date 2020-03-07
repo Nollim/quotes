@@ -1,12 +1,8 @@
-console.log('ici');
-const dotenv = require('dotenv')({ path: '../' });
+const dotenv = require('dotenv');
 const result = dotenv.config()
- 
+
 if (result.error) {
-  throw result.error
-}  
-   
-module.exports = {
-  mode: result.env.MODE,
-  mysql_host: result.env.MYSQL_HOST
-};
+    throw result.error
+}
+
+module.exports = { env : result.parsed };

@@ -12,7 +12,8 @@ services:
     volumes:
       - ../../:/usr/src
     command: 
-      bash -c "nodemon --inspect-brk=0.0.0.0 ."      
+      #bash -c "nodemon --inspect-brk=0.0.0.0 ."      
+      bash -c "node ."
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.node.rule=Host(`quotes.nollim`)"  
@@ -28,6 +29,15 @@ services:
     restart: always
     labels:
       - "traefik.enable=false"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.phpmyadmin.rule=Host(`quotes.pma.nollim`)"      
 
   traefik:
     container_name: ${CI_PROJECT_NAME}_traefik
