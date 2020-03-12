@@ -20,7 +20,7 @@ import-data:
 	@docker-compose -f ${PROJECT_ROOT}/config/docker/docker-compose.yml run --rm mysql mysql -uquotes -pquotes quotes < data/quotes.sql
 
 deliver:
-	rsync -avh ./*  pi@192.168.0.37:/home/pi/quotes
+	rsync -avh ./*  pi@192.168.0.37:/home/pi/quotes --delete
 
 start-distant:
 	ssh  pi@192.168.0.37 /home/pi/quotes/scripts/start.sh
